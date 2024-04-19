@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import plotly.express as px
-import dash_bootstrap_components as dbc
 # Dash components, html, and dash tables
 from dash import html
 # Import components PivotTable
