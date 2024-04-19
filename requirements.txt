@@ -1,4 +1,4 @@
-blinker==1.7.0
+linker==1.7.0
 certifi==2024.2.2
 charset-normalizer==3.3.2
 click==8.1.7
@@ -10,6 +10,7 @@ dash-html-components==2.0.0
 dash-pivottable==0.0.2
 dash-table==5.0.0
 Flask==3.0.2
+gunicorn==22.0.0
 idna==3.6
 importlib_metadata==7.0.2
 itsdangerous==2.1.2
