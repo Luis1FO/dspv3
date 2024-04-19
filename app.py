@@ -1,15 +1,14 @@
+# -*- coding: utf-8 -*-
 from dash import dcc, html
 import dash
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 from layouts import planLayout, codLayout, consLayout, pruLayout, lanLayout, dspLayout, opLayout, monLayout
 
-app = dash.Dash(external_stylesheets=[dbc.themes.COSMO])
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = 'DevOps'
 app.config.suppress_callback_exceptions = False 
-meta_tags = [
-    {'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}
-]
+meta_tags = [{'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}]
 # the style arguments for the sidebar. We use position:fixed and a responsive width
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -18,10 +17,8 @@ SIDEBAR_STYLE = {
     "bottom": 0,
     "width": "10rem",  # Porcentaje del ancho de la ventana del navegador
    "padding": "1rem 1rem",
-    "background-color": "#9c9c9c",
+    "background-color": "#d2f9fc",
 }
-
-
 # the styles for the main content position it to the right of the sidebar and
 # add some padding.
 CONTENT_STYLE = {
@@ -59,7 +56,6 @@ sidebar = html.Div(
 )
 # Contenido principal
 content = html.Div(id="page-content", style=CONTENT_STYLE)
-
 # Diseño de la aplicación
 app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 # Callback para cambiar el contenido según la URL
@@ -67,30 +63,25 @@ app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 def render_page_content(pathname):
     if pathname == '/':
          return html.Div(html.Img(src=app.get_asset_url('logo.png'))),html.Div([dcc.Markdown('''
-          El objetivo de esta investigación es proporcionar una herramienta de control que permitirá a las empresas desarrolladoras de software visualizar de manera gráfica el estado de avance de sus proyectos DevOps. 
+        El objetivo de esta investigación es proporcionar una herramienta de control que permitirá a las empresas desarrolladoras de software visualizar de manera gráfica el estado de avance de sus proyectos DevOps. 
         Esto les permitirá dar seguimiento, mostrar su continuidad y progreso a lo largo del tiempo. Para lograr este objetivo, se desarrolló una herramienta de software basada en tecnologías de código abierto. Esta herramienta se basa en los 8 procesos más comunes del enfoque DevOps y se apoya en el estándar IEEE 2675 for DevOps.  
         ''')],className='home')
-   
     if pathname =='/plan':
-         return [
-
-            html.Div(html.Img(src=app.get_asset_url('logo.png'))),
-            html.Div(planLayout),html.H1("Dynamically rendered tab content"),
-        ]
+         return  html.Div(html.Img(src=app.get_asset_url('logo.png'))),dbc.Card("Esfuerzo por puntos de historia", body=True),planLayout
     if pathname == '/cod':
-        return  dbc.Card("Proceso de codificacion - compilaciones de codigo exitosas", body=True),codLayout
+        return  dbc.Card("Tasa de defectos", body=True),codLayout
     if pathname == '/cons':
-        return html.Div(html.Img(src=app.get_asset_url('logo.png'))),consLayout
+        return html.Div(html.Img(src=app.get_asset_url('logo.png'))),dbc.Card("Compilaciones de codigo exitosas", body=True),consLayout
     if pathname == '/pru':
-        return html.Div(pruLayout),html.P("Proceso de Pruebas")
+        return  dbc.Card("Tasa de éxito de pruebas", body=True),pruLayout
     if pathname == '/lan':
-        return html.Div(html.Img(src=app.get_asset_url('logo.png'))),html.Div(lanLayout)
+        return html.Div(html.Img(src=app.get_asset_url('logo.png'))),dbc.Card("Tiempo de despliegue", body=True),lanLayout
     if pathname == '/dsp':
-        return html.Div(dspLayout)
+        return dbc.Card("Frecuencia de despliegue", body=True),dspLayout
     if pathname == '/ope':
-        return html.Div(html.Img(src=app.get_asset_url('logo.png'))),opLayout
+        return html.Div(html.Img(src=app.get_asset_url('logo.png'))),dbc.Card("Tiempo medio de detección (MTTD)", body=True),opLayout
     if pathname == '/mon':
-        return  monLayout
+        return dbc.Card("Tiempo medio de recuperación (MTTR)", body=True),monLayout
     else:
         # If the user tries to reach a different page, return a 404 message
         return dbc.Alert(
@@ -101,11 +92,7 @@ def render_page_content(pathname):
         html.A("Inicio", href="/", className="alert-link"),
         ]
         ),
-
 # Call app server
 if __name__ == '__main__':
     # set debug to false when deploying app
-   app.run_server(debug=True)
-
-
-    
+   app.run_server(debug=False)
