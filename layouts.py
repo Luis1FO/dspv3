@@ -25,14 +25,14 @@ dash_pivottable.PivotTable(
 id='table',
 data=data_plan,
 #datos en el eje x
-cols=['PuntosH'],
+cols=['id_proyecto'],
 # colOrder="key_a_to_z",
 #Datos que se muestran para filtrar aqui podria ser nombre proyecto 
-rows=['nombre_proyecto'],
+rows=['faseDevOps'],
 #orden de los datos
 rowOrder="key_a_to_z",
 #rendererName="Stacked Column Chart",
-rendererName="Scatter Chart",
+rendererName="Dot Chart",
 aggregatorName="Sum",
 #Datos que se muestran en las barras aqui podria ser metricas
 vals=['PuntosH'],
@@ -50,7 +50,7 @@ dash_pivottable.PivotTable(
 id='table',
 data=data_cod,
 #datos en el eje x
-cols=['nombre_proyecto'],
+cols=['id_proyecto'],
 # colOrder="key_a_to_z",
 #Datos que se muestran para filtrar aqui podria ser nombre proyecto 
 rows=['faseDevOps'],
@@ -73,7 +73,7 @@ dash_pivottable.PivotTable(
 id='table',
 data=data_cons,
 #datos en el eje x
-cols=['nombre_proyecto'],
+cols=['id_proyecto'],
 # colOrder="key_a_to_z",
 #Datos que se muestran para filtrar aqui podria ser nombre proyecto 
 rows=['faseDevOps'],
@@ -87,19 +87,18 @@ vals=["CompilacionExitosa"],
 hiddenAttributes=["entregable"],
 hiddenFromAggregators=["descripcion","fechaIni","fechaFin","observaciones","entregable","responsable"],
 ),
-html.Div(
+html.Div( 
 id='output'
 )
 ])
 #Pruebas
 pruLayout = html.Div([
- html.H3("Tabla de Resultados"),
 dash_pivottable.PivotTable(
 id='table',
 data=data_pru,
 #datos en el eje x
 #cols=['fecha','faseDevOps'],
-cols=['nombre_proyecto'],
+cols=['id_proyecto'],
 colOrder="key_a_to_z",
 #Datos que se muestran para filtrar aqui podria ser nombre proyecto 
 rows=['faseDevOps',"fecha"],
@@ -126,7 +125,7 @@ data=lan_data,
 #cols=['faseDevOps'],
 #colOrder="key_a_to_z",
 #Datos que se muestran para filtrar aqui podria ser nombre proyecto 
-rows=['nombre_proyecto','NumLan'],
+rows=['id_proyecto','NumLan'],
 #orden de los datos
 rowOrder="key_a_to_z",
 rendererName="Grouped Column Chart",
@@ -147,13 +146,13 @@ dash_pivottable.PivotTable(
 id='table',
 data=dsp_data,
 #datos en el eje x
-cols=['fechaIni','fechaFin'],
+cols=['id_proyecto'],
 # colOrder="key_a_to_z",
 #Datos que se muestran para filtrar aqui podria ser nombre proyecto 
-rows=['nombre_proyecto'],
+rows=['fechaIni','fechaFin'],
 #orden de los datos
 rowOrder="key_a_to_z",
-rendererName="Stacked Bar Chart",
+rendererName="Dot Chart",
 aggregatorName="Sum",
 #Datos que se muestran en las barras aqui podria ser metricas "","",
 vals=['NumDespli'],
@@ -173,7 +172,7 @@ data=op_data,
 #cols=['TiempoDet'],
 # colOrder="key_a_to_z",
 #Datos que se muestran para filtrar aqui podria ser nombre proyecto 
-rows=['Errores','nombre_proyecto'],
+rows=['Errores','id_proyecto'],
 #orden de los datos
 rowOrder="key_a_to_z",
 rendererName="Grouped Column Chart",
@@ -195,14 +194,14 @@ dash_pivottable.PivotTable(
 id='table',
 data=mon_data,
 #datos en el eje x
-cols=['nombre_proyecto'],
+cols=['id_proyecto'],
 # colOrder="key_a_to_z",
 #Datos que se muestran para filtrar aqui podria ser nombre proyecto 
 rows=['Recu'],
 #orden de los datos
 rowOrder="key_a_to_z",
-rendererName="Stacked Column Chart",
-aggregatorName="Median",
+rendererName="Dot Chart",
+aggregatorName="Sum",
 #Datos que se muestran en las barras aqui podria ser metricas
 vals=['TiempoRec', 'Recu'],
 #omitir de la parte de arrastrar y soltar
